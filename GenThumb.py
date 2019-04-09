@@ -7,17 +7,31 @@ from PIL import Image
 import logging
 import _thread
 import time
+import getopt
+import sys
+import os
 
 logging.basicConfig(filename='GenThumb.log', level=logging.DEBUG,
                     format='%(asctime)s [%(levelname)s] %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p')
 logging.info("---------------")
 
-baseuri = "https://s3.wasabisys.com/c0de-photography/"
-s3_path = "/mnt/photos/"
-browse_path = "EOS 30D/MFF 2016"
-thumb_path = "./thumbs"
+baseuri = os.environ.get('BASEURI',"https://s3.wasabisys.com/c0de-photography/")
+s3_path = os.environ.get('S3MOUNT', "/mnt/photos/")
+thumb_path = os.environ.get('THUMBNAILS', "./thumbs")
 thumbsize = (250, 250)
+
+try:
+    opts, args = getopt.getopt(sys.argv[1:],"hb:",["browse="])
+except getopt.GetoptError:
+    print ('GenThumb.py -b <browse path>')
+    sys.exit(2)
+for opt, arg in opts:
+    if opt == '-h':
+        print ('GenThumb.py -b <browse path>')
+        sys.exit()
+    elif opt in ("-b", "--browse"):
+        browse_path = arg
 
 logging.info("Getting Paths (Can take time on large directories)")
 filelist = list(Path(s3_path + browse_path).rglob("*.[jJ][pP][gG]"))

@@ -23,10 +23,7 @@ logging.info("Getting Paths (Can take time on large directories)")
 filelist = list(Path(s3_path + browse_path).rglob("*.[jJ][pP][gG]"))
 thumblist = list(Path(thumb_path).rglob("*.[jJ][pP][gG]"))
 
-def gen_thumb(image):
-    imagepath = "%s" % image.parent
-    imagepath = imagepath.strip(s3_path)
-    pathlist.write(baseuri + imagepath + '/' + image.name)
+def gen_thumb(image, imagepath):
     Path(thumb_path + '/' + imagepath).mkdir(mode=0o755, parents=True, exist_ok=True) # Generate the path if it doesn't already exist
     thumbname = "%s/%s/%s" % (thumb_path, imagepath, image.name)
 
@@ -44,9 +41,12 @@ def gen_thumb(image):
 
 with open('pathlist.txt', 'w') as pathlist:
     for image in filelist:
+        imagepath = "%s" % image.parent
+        imagepath = imagepath.strip(s3_path)
+        pathlist.write(baseuri + imagepath + '/' + image.name + '\n')
         try:
             # WARNING: Each file found will become a thread! Be sure your computer can handle the load
-            _thread.start_new_thread(gen_thumb, (image,))
+            _thread.start_new_thread(gen_thumb, (image, imagepath,))
             time.sleep(0.15)
         except:
             logging.error("unable to start thread")

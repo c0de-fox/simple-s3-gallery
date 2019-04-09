@@ -47,6 +47,11 @@ template = """
                 max-width: 40rem;
             }
 
+            .card-header {
+                text-align: center;
+                padding: 0.25rem 0rem;
+            }
+
             footer {
                 padding-top: 3rem;
                 padding-bottom: 3rem;
@@ -106,7 +111,7 @@ template = """
             </section>
             -->
 
-            <div class="album py-5 bg-dark">
+            <div class="album py-4 bg-dark">
                 <div class="container">
                     <div class="row">
                         {{THUMBROW}}

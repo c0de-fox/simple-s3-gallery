@@ -3,10 +3,24 @@
 # Usage: ./GenThumb.py
 
 from pathlib import Path
+import getopt
+import sys
+import os
 
-baseuri = "https://s3.wasabisys.com/c0de-photography/"
-thumb_path = "./thumbs"
-pathlist_file = "pathlist_EOS 30D:10.03.2015 - Jay Cooke:.txt" # Index file created by GenThumb.py
+baseuri = os.environ.get('BASEURI',"https://s3.wasabisys.com/c0de-photography/")
+thumb_path = os.environ.get('THUMBNAILS', "./thumbs")
+
+try:
+    opts, args = getopt.getopt(sys.argv[1:],"hp:",["pathlist="])
+except getopt.GetoptError:
+    print ('GenThumb.py -p <pathlist file>')
+    sys.exit(2)
+for opt, arg in opts:
+    if opt == '-h':
+        print ('GenThumb.py -p <pathlist file>')
+        sys.exit()
+    elif opt in ("-p", "--pathlist"):
+        pathlist_file = arg # Index file created by GenThumb.py
 
 template = """
 <html>

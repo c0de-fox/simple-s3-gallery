@@ -1,4 +1,4 @@
-pathlist.txt
+pathlist*.txt
 thumbs/*
 GenThumb.log
-index.html
+index*.html

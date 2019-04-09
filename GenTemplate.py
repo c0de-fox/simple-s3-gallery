@@ -6,6 +6,7 @@ from pathlib import Path
 
 baseuri = "https://s3.wasabisys.com/c0de-photography/"
 thumb_path = "./thumbs"
+pathlist_file = "pathlist_EOS 30D:10.03.2015 - Jay Cooke:.txt" # Index file created by GenThumb.py
 
 template = """
 <html>
@@ -80,7 +81,7 @@ template = """
                 <div class="container d-flex justify-content-between">
                 <a href="#" class="navbar-brand d-flex align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                    <strong>Album</strong>
+                    <strong>Simple S3 Gallery</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -117,7 +118,7 @@ template = """
         <footer class="text-muted">
             <div class="container">
                 <p class="float-right"><a href="#">Back to top</a></p>
-                <p>Simple S3 Gallery &copy; 2019 <a href="https://c0defox.es">David Todd</a></p>
+                <p>Simple S3 Gallery &copy; 2019 <a href="https://c0defox.es">David Todd</a> - All photos are &copy; <a href="https://dtodd.us">David Todd</a></p>
             </div>
         </footer>
 
@@ -125,7 +126,7 @@ template = """
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
-</html
+</html>
 """
 
 template2 = """
@@ -141,8 +142,8 @@ template2 = """
 
 thumblist = list(Path(thumb_path).rglob("*.[jJ][pP][gG]"))
 
-with open('pathlist.txt', 'r') as pathlist:
-    with open('index.html', 'w') as index:
+with open(pathlist_file, 'r') as pathlist:
+    with open('index_%s.html' % pathlist_file.strip("pathlist_").strip(".txt"), 'w') as index:
         pathlist = "%s" % pathlist.read()
         pathlist = pathlist.splitlines()
         thumbrow = ""

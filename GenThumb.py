@@ -15,7 +15,7 @@ logging.info("---------------")
 
 baseuri = "https://s3.wasabisys.com/c0de-photography/"
 s3_path = "/mnt/photos/"
-browse_path = "EOS M100/"
+browse_path = "EOS 30D/MFF 2016"
 thumb_path = "./thumbs"
 thumbsize = (250, 250)
 
@@ -35,14 +35,14 @@ def gen_thumb(image, imagepath):
         img = Image.open(image)
         img.thumbnail(thumbsize)
         img.save(thumbname)
-        img.close(image) # So we're not wasting memory when the threads wait to get closed
 
         logging.info("Saved Thumbnail as %s" % thumbname)
 
-with open('pathlist.txt', 'w') as pathlist:
+with open('pathlist_%s.txt' % browse_path.replace('/', ':'), 'w') as pathlist:
     for image in filelist:
         imagepath = "%s" % image.parent
         imagepath = imagepath.strip(s3_path)
+        # The pathlist file is used by GenTemplate.py to generate a specific gallery for a specific directory and its children
         pathlist.write(baseuri + imagepath + '/' + image.name + '\n')
         try:
             # WARNING: Each file found will become a thread! Be sure your computer can handle the load

@@ -52,6 +52,7 @@ def gen_thumb(image, imagepath):
 
         logging.info("Saved Thumbnail as %s" % thumbname)
 
+logging.debug("Creating pathlist file as: pathlist_%s.txt" % browse_path.replace('/', ':'))
 with open('pathlist_%s.txt' % browse_path.replace('/', ':'), 'w') as pathlist:
     for image in filelist:
         imagepath = "%s" % image.parent

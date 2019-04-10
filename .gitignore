@@ -2,3 +2,4 @@ pathlist*.txt
 thumbs/*
 GenThumb.log
 index*.html
+.vscode

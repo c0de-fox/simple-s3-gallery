@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# GenThumb.py - Part of the simple s3 gallery
-# Usage: ./GenThumb.py
+# GenThumb.py - Takes a directory listing and generates thumbnails for all JPGs, as well as creates a PathList.txt file
+# Usage: ./GenThumb.py -b "S3MOUNT(implicit)/path/to/browse"
 
 from pathlib import Path
 from PIL import Image

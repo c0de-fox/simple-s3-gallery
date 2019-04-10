@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-# GenThumb.py - Part of the simple s3 gallery
-# Usage: ./GenThumb.py
+# GenTemplate.py - Takes PathList files and thumbnails from GenThumb and generates a single page gallery
+# Usage: ./GenTemplate.py -p "pathlist file.txt"
 
 from pathlib import Path
 import getopt
+import random
 import sys
 import os
 
@@ -13,11 +14,11 @@ thumb_path = os.environ.get('THUMBNAILS', "./thumbs")
 try:
     opts, args = getopt.getopt(sys.argv[1:],"hp:",["pathlist="])
 except getopt.GetoptError:
-    print ('GenThumb.py -p <pathlist file>')
+    print ('GenTemplate.py -p <pathlist file>')
     sys.exit(2)
 for opt, arg in opts:
     if opt == '-h':
-        print ('GenThumb.py -p <pathlist file>')
+        print ('GenTemplate.py -p <pathlist file>')
         sys.exit()
     elif opt in ("-p", "--pathlist"):
         pathlist_file = arg # Index file created by GenThumb.py
@@ -36,6 +37,15 @@ template = """
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
+            .bg-dark {
+                background-color: #343a40cc !important;
+            }
+
+            nav.bcrumb {
+                margin-left: 1rem;
+                margin-top: 0.5rem;
+            }
+
             .jumbotron {
                 padding-top: 3rem;
                 padding-bottom: 3rem;
@@ -83,7 +93,7 @@ template = """
                     <div class="row">
                         <div class="col-sm-8 col-md-7 py-4">
                             <h4 class="text-white">About</h4>
-                            <p class="text-muted">This was a small gallery that I put together to make my photography available to the world. Images are grouped in folders for what I've done.</p>
+                            <p class="text-white">This is a small gallery to represent images that I have taken over the past few years. Most of these are unsorted and unedited, and thus a lot are blurry or have lighting issues. I have taken, and thereby own all photos on this site.</p>
                         </div>
                         <div class="col-sm-4 offset-md-1 py-4">
                             <h4 class="text-white">Contact</h4>
@@ -98,10 +108,15 @@ template = """
             </div>
             <div class="navbar navbar-dark bg-dark shadow-sm">
                 <div class="container d-flex justify-content-between">
-                <a href="#" class="navbar-brand d-flex align-items-center">
+                <span class="navbar-brand d-flex align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
                     <strong>Simple S3 Gallery</strong>
-                </a>
+                    <nav class="text-dark bcrumb" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            {{BREADCRUMBS}}
+                        </ol>
+                    </nav>
+                </span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -125,7 +140,7 @@ template = """
             </section>
             -->
 
-            <div class="album py-4 bg-dark">
+            <div class="album py-3 bg-dark">
                 <div class="container">
                     <div class="row">
                         {{THUMBROW}}
@@ -149,9 +164,9 @@ template = """
 """
 
 template2 = """
-<div class="col-md-4">
+<div class="col-md-3">
     <a href="{{FULLLINK}}" target="{{FULLLINK}}">
-        <div class="card mb-4 bg-dark text-white">
+        <div class="card mb-3 bg-dark text-white rounded">
             <div class="card-header">{{TITLE}}</div>
             <img class=card-img" width="100%" height="100%" src="{{THUMBNAIL}}" />
         </div>
@@ -159,12 +174,15 @@ template2 = """
 </div>
 """
 
+crumb_template = """<li class="breadcrumb-item" aria-current="page">{{PATH}}</li>"""
+
 thumblist = list(Path(thumb_path).rglob("*.[jJ][pP][gG]"))
 
 with open(pathlist_file, 'r') as pathlist:
     with open('index_%s.html' % pathlist_file.strip("pathlist_").strip(".txt"), 'w') as index:
         pathlist = "%s" % pathlist.read()
         pathlist = pathlist.splitlines()
+        pathlist.sort()
         thumbrow = ""
         for image in thumblist:
             indices = [i for i, s in enumerate(pathlist) if image.name in s]
@@ -174,5 +192,12 @@ with open(pathlist_file, 'r') as pathlist:
                 the_template = the_template.replace("{{FULLLINK}}", pathlist[indices[0]])
                 the_template = the_template.replace("{{TITLE}}", imagename.strip("thumbs/"))
                 thumbrow += the_template.replace("{{THUMBNAIL}}", "%s" % image)
-        index.write(template.replace("{{THUMBROW}}", thumbrow))
+
+        breadcrumbs = pathlist_file.strip("pathlist_").strip(".txt").split(":")
+        crumblist = ""
+        for crumb in breadcrumbs:
+            the_template = crumb_template
+            crumblist += the_template.replace("{{PATH}}", crumb)
+
+        index.write(template.replace("{{THUMBROW}}", thumbrow).replace("{{BREADCRUMBS}}", crumblist))
 

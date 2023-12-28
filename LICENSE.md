@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2019 David Todd (c0de@c0defox.es)
+Copyright (c) 2023 Code Fox <c0de@c0de.dev>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

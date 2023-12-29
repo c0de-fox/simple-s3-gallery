@@ -21,7 +21,13 @@ template_vars = {
             "bootstrap": {
                 "src": "./templates/static/bootstrap.bundle.min.js",
             },
-            "theme": {"src": "./templates/static/color-modes.js", "place_in_head": True},
+            "theme": {
+                "src": "./templates/static/color-modes.js",
+                "place_in_head": True,
+            },
+            "masonry": {
+                "src": "https://cdn.jsdelivr.ner/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+            },
         },
         "css": {
             "bootstrap": {"src": "./templates/static/bootstrap.min.css"},
@@ -109,8 +115,8 @@ template_vars = {
         {
             "src": "https://c0defox.es/paw-tail.svg",
             "alt_text": "a fox tail next to a paw print",
-            "title": ""
-        }
+            "title": "",
+        },
     ],
 }
 

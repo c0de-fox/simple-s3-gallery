@@ -50,12 +50,6 @@ template_vars = {
         { "href": "https://c0defox.es", "text": "Fox :3" },
         { "href": "https://furry.engineer/c0de", "text": "Mastodon", "icon": "mastodon" }
     ],
-    "reactions": [
-        "heart-fill",
-        "backpack4",
-        "balloon-fill",
-        "bag-x-fill"
-    ],
     "footer": {
         "main_line": "Copyright 2024 Code Fox",
         "extra_lines": [
@@ -63,7 +57,7 @@ template_vars = {
             "This is yet another line"
         ]
     },
-    "active": True,
+    "active": False,
     "header": "This is a call to action",
     "lead_text": "Some interesting text for the user",
     "action_buttons": [
@@ -72,10 +66,30 @@ template_vars = {
         { "href": "3", "theme": "warning", "icon": "exclamation-diamond-fill" },
         { "href": "3", "theme": "warning", "icon": "exclamation-diamond-fill", "text": "some text" }
     ],
-    "gallery_items": {
-        "test": "test",
-        "test2": "test2"
-    }
+    "gallery_items": [
+        {
+            "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",
+            "description": "An arctic fox :3",
+            "title": "fox",
+            "reactions": [
+                "heart-fill",
+                "backpack4",
+                "balloon-fill",
+                "bag-x-fill"
+            ],
+        },
+        {
+            "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",
+            "description": "An arctic fox :3",
+            "title": "fox",
+            "reactions": [
+                "heart",
+                "backpack3",
+                "balloon",
+                "bag-x"
+            ],
+        }
+    ]
 }
 
 def main():

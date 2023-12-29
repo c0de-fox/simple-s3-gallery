@@ -25,16 +25,10 @@
           href="{{ button.href | default('#') }}"
           class="btn btn-{{ button.theme | default('primary') }} my-2 d-inline-flex"
         >
-          {{ button.text }}
           {% if button.icon %}
-          <svg
-            class="bi"
-            width="{{ button.icon.width }}"
-            height="{{ button.icon.height }}"
-          >
-            <use xlink:href="#{{ button.icon.name }}"/>
-          </svg>
+          <i class="bi-{{ button.icon }}"></i>
           {% endif %}
+          {{ button.text }}
         </a>
         {% endfor %}
       </p>

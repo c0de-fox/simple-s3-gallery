@@ -10,6 +10,7 @@
     n. (list index)
       - href | yes | none
       - text | yes | none
+      - icon | no | none
     ... (etc)
 -->
 <header data-bs-theme="{{ theme | default('dark') }}">
@@ -29,13 +30,7 @@
               {% if link.href and link.text %}
             <li><a href={{ link.href }} class="text-{{ text_theme | default('white') }}">
               {% if link.icon %}
-              <svg
-                class="bi"
-                width="{{ link.icon.width }}"
-                height="{{ link.icon.height }}"
-              >
-                <use xlink:href="#{{ link.icon.name }}"/>
-              </svg>
+              <i class="bi-{{ link.icon }}"></i>
               {% endif %}
               {{ link.text }}
             </a></li>

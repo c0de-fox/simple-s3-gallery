@@ -23,6 +23,9 @@
 
     {% if this.description and this.description|length >= 1 %}
     <div class="card-body">
+      {% if this.headline %}
+      <h5 class="card-title">{{ this.headline }}</h5>
+      {% endif %}
       <p class="card-text">{{ this.description }}</p>
     </div>
     {% endif %}

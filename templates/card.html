@@ -31,7 +31,7 @@
       {% set reaction_iterations = namespace(value=0) %}
       {% for reaction, reaction_count in this.reactions|dictsort(by="value") %}
         {# Don't render reaction if we've reached the max number, or its counter is 0 (or lower) #}
-        {% if reaction_iterations != gallery.max_reactions_per_card|int and reaction_count >= 1 %}
+        {% if reaction_iterations.value|int != gallery.max_reactions_per_card|int and reaction_count|int >= 1 %}
 
       <button class="btn btn-link btn-sm disabled text-body position-relative">
         {# TODO: Enable the button, and make clicking it toggle adding/removing that reaction to the counter, also color reaction button #}

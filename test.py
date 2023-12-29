@@ -21,83 +21,76 @@ template_vars = {
             "bootstrap": {
                 "src": "./templates/example/bootstrap.bundle.min.js",
             },
-            "theme": {
-                "src": ".templates/example/color-modes.js"
-            }
+            "theme": {"src": ".templates/example/color-modes.js"},
         },
         "css": {
-            "bootstrap": {
-                "src": "./templates/example/bootstrap.min.css"
-            },
-            "theme": {
-                "src": "./templates/example/gallery.css"
-            },
+            "bootstrap": {"src": "./templates/example/bootstrap.min.css"},
+            "theme": {"src": "./templates/example/gallery.css"},
             "icons": {
                 "src": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
-            }
-        }
+            },
+        },
     },
     "meta_list": [
-        { "name": "description", "content": "This is a description" },
-        { "name": "generator", "content": "simple-s3-gallery v.2023.12" },
-        { "name": "author", "content": "Code Fox" },
-        { "name": "theme-color", "content": "#712cf9" }
+        {"name": "description", "content": "This is a description"},
+        {"name": "generator", "content": "simple-s3-gallery v.2023.12"},
+        {"name": "author", "content": "Code Fox"},
+        {"name": "theme-color", "content": "#712cf9"},
     ],
     "left_header": "About the gallery",
     "left_text": "This is an example gallery that is generated via a template",
     "right_header": "Contact",
     "link_list": [
-        { "href": "https://c0defox.es", "text": "Fox :3" },
-        { "href": "https://furry.engineer/c0de", "text": "Mastodon", "icon": "mastodon" }
+        {"href": "https://c0defox.es", "text": "Fox :3"},
+        {"href": "https://furry.engineer/c0de", "text": "Mastodon", "icon": "mastodon"},
     ],
     "footer": {
         "main_line": "Copyright 2024 Code Fox",
-        "extra_lines": [
-            "This is another line",
-            "This is yet another line"
-        ]
+        "extra_lines": ["This is another line", "This is yet another line"],
     },
     "active": False,
     "header": "This is a call to action",
     "lead_text": "Some interesting text for the user",
     "action_buttons": [
-        { "href": "1" },
-        { "href": "2", "theme": "danger" },
-        { "href": "3", "theme": "warning", "icon": "exclamation-diamond-fill" },
-        { "href": "3", "theme": "warning", "icon": "exclamation-diamond-fill", "text": "some text" }
+        {"href": "1"},
+        {"href": "2", "theme": "danger"},
+        {"href": "3", "theme": "warning", "icon": "exclamation-diamond-fill"},
+        {
+            "href": "3",
+            "theme": "warning",
+            "icon": "exclamation-diamond-fill",
+            "text": "some text",
+        },
     ],
     "gallery_items": [
         {
             "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",
             "description": "An arctic fox :3",
             "title": "fox",
-            "reactions": [
-                "heart-fill",
-                "backpack4",
-                "balloon-fill",
-                "bag-x-fill"
-            ],
+            "reactions": ["heart-fill", "backpack4", "balloon-fill", "bag-x-fill"],
         },
         {
             "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",
             "description": "An arctic fox :3",
             "title": "fox",
-            "reactions": [
-                "heart",
-                "backpack3",
-                "balloon",
-                "bag-x"
-            ],
-        }
-    ]
+            "reactions": ["heart", "backpack3", "balloon", "bag-x"],
+        },
+    ],
 }
+
 
 def main():
     """main method"""
 
-    env = Environment(loader=FileSystemLoader("templates"), autoescape=select_autoescape())
+    env = Environment(
+        loader=FileSystemLoader("templates"),
+        autoescape=select_autoescape(),
+        trim_blocks=True,
+        lstrip_blocks=True,
+    )
     template = env.get_template("base.html")
     print(template.render(**template_vars))
+
 
 if __name__ == "__main__":
     main()

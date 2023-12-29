@@ -19,13 +19,13 @@ template_vars = {
     "static": {
         "scripts": {
             "bootstrap": {
-                "src": "./templates/example/bootstrap.bundle.min.js",
+                "src": "./templates/static/bootstrap.bundle.min.js",
             },
-            "theme": {"src": "./templates/example/color-modes.js"},
+            "theme": {"src": "./templates/static/color-modes.js"},
         },
         "css": {
-            "bootstrap": {"src": "./templates/example/bootstrap.min.css"},
-            "theme": {"src": "./templates/example/gallery.css"},
+            "bootstrap": {"src": "./templates/static/bootstrap.min.css"},
+            "theme": {"src": "./templates/static/gallery.css"},
             "icons": {
                 "src": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
             },

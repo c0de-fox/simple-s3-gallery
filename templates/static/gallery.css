@@ -74,3 +74,15 @@
 .bd-mode-toggle .dropdown-menu .active .bi {
   display: block !important;
 }
+
+/*
+  Surprised this doesn't exist by default.
+  Inverted colors for the current theme; works with the color switcher
+*/
+.bg-body-inverted {
+  background-color: var(--bs-body-color);
+}
+
+.text-body-inverted {
+  color: var(--bs-body-bg);
+}

@@ -39,7 +39,7 @@
 
           {# Only show counter if more than 2 people gave the same reaction #}
           {% if reaction_count|int >= 2 %}
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-body-inverted text-body-inverted">
             {# Don't render reaction counts larger than 1000 #}
             {{ reaction_count if reaction_count <= 999 else '1K+' }}
           <span class="visually-hidden">

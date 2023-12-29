@@ -1,36 +1,36 @@
 <div class="col">
   <div class="card shadow-sm">
-    <div class="card-header text-end">
+    <div class="card-header">
+      <span class="flex">{{ gallary.title }}</span>
       <a
         href="#"
-        class="btn btn-light"
+        class="btn btn-link float-end"
         data-bs-toggle="tooltip"
         data-bs-placement="top"
         data-bs-title="Add a reaction"
       >
-        <i class="bi-heart-fill" style="font-size: 1rem; color: pink;"></i>
+        <i class="bi-heart-fill text-end" style="font-size: 1rem; color: pink;"></i>
       </a>
     </div>
 
     <img
       class="card-image-top"
-      width="{{ width | default('100%') }}"
-      height="{{ height | default('225') }}"
-      src="{{ src }}"
-      alt="{{ alt_text if alt_text else title }}"
+      width="{{ gallary.width | default('100%') }}"
+      height="{{ gallary.height | default('225') }}"
+      src="{{ gallary.src }}"
+      alt="{{ gallary.alt_text if gallary.alt_text else gallary.title }}"
     />
 
     <div class="card-body">
-      <h5 class="card-title text-center">{{ title }}</h5>
-      <p class="card-text">{{ description | default('') }}</p>
+      <p class="card-text">{{ gallary.description | default('') }}</p>
     </div>
 
     <div class="card-footer text-body-secondary text-end">
-      {% if reactions %}
-        {% for reaction in reactions %}
+      {% if gallary.reactions %}
+        {% for reaction in gallary.reactions %}
         {# TODO: limit total number of reactions shown #}
       <span class="badge rounded-pill">
-        <i class="bi-{{ reaction }}"></i>
+        <i class="bi-{{ reaction }}" style="color: black;"></i>
       </span>
         {% endfor %}
       {% endif %}

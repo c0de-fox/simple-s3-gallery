@@ -1,7 +1,7 @@
 <div class="col">
   <div class="card shadow-sm">
     <div class="card-header">
-      <span class="flex">{{ gallery.title }}</span>
+      <span class="flex">{{ this.title }}</span>
       <a
         href="#"
         class="btn btn-link float-end"
@@ -15,24 +15,45 @@
 
     <img
       class="card-image-top"
-      width="{{ gallery.width | default('100%') }}"
-      height="{{ gallery.height | default('225') }}"
-      src="{{ gallery.src }}"
-      alt="{{ gallery.alt_text if gallery.alt_text else gallery.title }}"
+      width="{{ this.width | default('100%') }}"
+      height="{{ this.height | default('225') }}"
+      src="{{ this.src }}"
+      alt="{{ this.alt_text if this.alt_text else this.title }}"
     />
 
     <div class="card-body">
-      <p class="card-text">{{ gallery.description | default('') }}</p>
+      <p class="card-text">{{ this.description | default('') }}</p>
     </div>
 
-    {% if gallery.reactions %}
+    {% if this.reactions and gallery.max_reactions_per_card|int >= 1 %}
     <div class="card-footer text-body-secondary text-end">
-      {% for reaction in gallery.reactions %}
-      {# TODO: limit total number of reactions shown #}
-      <span class="badge rounded-pill text-body">
+
+      {% set reaction_iterations = namespace(value=0) %}
+      {% for reaction, reaction_count in this.reactions|dictsort(by="value") %}
+        {# Don't render reaction if we've reached the max number, or its counter is 0 (or lower) #}
+        {% if reaction_iterations != gallery.max_reactions_per_card|int and reaction_count >= 1 %}
+
+      <button class="btn btn-link btn-sm disabled text-body position-relative">
+        {# TODO: Enable the button, and make clicking it toggle adding/removing that reaction to the counter, also color reaction button #}
         <i class="bi-{{ reaction }}"></i>
-      </span>
+
+          {# Only show counter if more than 2 people gave the same reaction #}
+          {% if reaction_count|int >= 2 %}
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+            {# Don't render reaction counts larger than 1000 #}
+            {{ reaction_count if reaction_count <= 999 else '1K+' }}
+          <span class="visually-hidden">
+            {{ reaction_count }} people reacted with {{ reaction }}
+          </span>
+        </span>
+          {% endif %}
+
+      </button>
+
+          {% set reaction_iterations.value = reaction_iterations.value + 1 %}
+        {% endif %}
       {% endfor %}
+      {% set reaction_iterations = none %}
     </div>
     {% endif %}
 

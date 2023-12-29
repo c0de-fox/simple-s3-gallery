@@ -2,7 +2,6 @@ pathlist*.txt
 thumbs/*
 *.log
 index*.html
-.vscode
 **/example/**
 **/*venv/**
 test.html

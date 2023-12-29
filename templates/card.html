@@ -1,5 +1,6 @@
 <div class="col">
   <div class="card shadow-sm">
+    {% if this.title %}
     <div class="card-header position-relative">
       <span class="flex">{{ this.title }}</span>
       <a
@@ -12,6 +13,7 @@
         <i class="bi-heart-fill position-absolute translate-middle top-50 end-1 text-danger"></i>
       </a>
     </div>
+    {% endif %}
 
     <img
       class="card-image-top"
@@ -21,9 +23,11 @@
       alt="{{ this.alt_text if this.alt_text else this.title }}"
     />
 
+    {% if this.description and this.description|length >= 1 %}
     <div class="card-body">
-      <p class="card-text">{{ this.description | default('') }}</p>
+      <p class="card-text">{{ this.description }}</p>
     </div>
+    {% endif %}
 
     {% if this.reactions and gallery.max_reactions_per_card|int >= 1 %}
     <div class="card-footer text-body-secondary text-end">

@@ -102,10 +102,15 @@ template_vars = {
             "reactions": {"heart-fill": 1024, "bag-x-fill": 50},
         },
         {
-            "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",
-            "description": "An arctic fox :3",
-            "title": "fox",
+            "src": "https://secure.gravatar.com/avatar/1e346a54257cf0a9932fcfc1e61c015d?s=200",
+            "description": "",
+            "title": "",
         },
+        {
+            "src": "https://c0defox.es/paw-tail.svg",
+            "alt_text": "a fox tail next to a paw print",
+            "title": ""
+        }
     ],
 }
 

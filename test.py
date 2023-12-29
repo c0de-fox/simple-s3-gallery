@@ -26,7 +26,7 @@ template_vars = {
                 "place_in_head": True,
             },
             "masonry": {
-                "src": "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+                "src": "https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"
             },
         },
         "css": {

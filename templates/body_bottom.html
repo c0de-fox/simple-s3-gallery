@@ -1,9 +1,19 @@
-{% if static.scripts.bootstrap %}
+{% if static.scripts | length >= 1 +%}
+
+<!-- Scripts -->
+
+  {% for _, script in static.scripts | items %}
+    {# Load scripts at the bottom by default #}
+    {% if not script.place_in_head | default(False) %}
   <script
-    src="{{ static.scripts.bootstrap.src | default('') }}"
-    integrity="{{ static.scripts.bootstrap.integrity | default('') }}"
-    crossorigin="{{ static.scripts.bootstrap.crossorigin | default('anonymous' if static.scripts.bootstrap.integrity else '') }}"
+    src="{{ script.src }}"
+    {{- 'integrity="' + script.integrity + '"' if script.integrity else omit }}
+    {{- 'crossorigin="' + script.crossorigin + '"' if script.integrity else omit }}
   ></script>
+
+    {% endif %}
+  {% endfor %}
 {% endif %}
+
 </body>
 </html>

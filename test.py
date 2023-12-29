@@ -21,7 +21,7 @@ template_vars = {
             "bootstrap": {
                 "src": "./templates/static/bootstrap.bundle.min.js",
             },
-            "theme": {"src": "./templates/static/color-modes.js"},
+            "theme": {"src": "./templates/static/color-modes.js", "place_in_head": True},
         },
         "css": {
             "bootstrap": {"src": "./templates/static/bootstrap.min.css"},

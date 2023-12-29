@@ -1,7 +1,7 @@
 <div class="col">
   <div class="card shadow-sm">
     <div class="card-header">
-      <span class="flex">{{ gallary.title }}</span>
+      <span class="flex">{{ gallery.title }}</span>
       <a
         href="#"
         class="btn btn-link float-end"
@@ -15,19 +15,19 @@
 
     <img
       class="card-image-top"
-      width="{{ gallary.width | default('100%') }}"
-      height="{{ gallary.height | default('225') }}"
-      src="{{ gallary.src }}"
-      alt="{{ gallary.alt_text if gallary.alt_text else gallary.title }}"
+      width="{{ gallery.width | default('100%') }}"
+      height="{{ gallery.height | default('225') }}"
+      src="{{ gallery.src }}"
+      alt="{{ gallery.alt_text if gallery.alt_text else gallery.title }}"
     />
 
     <div class="card-body">
-      <p class="card-text">{{ gallary.description | default('') }}</p>
+      <p class="card-text">{{ gallery.description | default('') }}</p>
     </div>
 
     <div class="card-footer text-body-secondary text-end">
-      {% if gallary.reactions %}
-        {% for reaction in gallary.reactions %}
+      {% if gallery.reactions %}
+        {% for reaction in gallery.reactions %}
         {# TODO: limit total number of reactions shown #}
       <span class="badge rounded-pill">
         <i class="bi-{{ reaction }}" style="color: black;"></i>

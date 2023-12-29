@@ -64,18 +64,21 @@ template_vars = {
             },
         ],
     },
+    "gallery": {
+        "max_reactions_per_card": 10,
+    },
     "gallery_items": [
         {
             "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",
             "description": "An arctic fox :3",
             "title": "fox",
-            "reactions": ["heart-fill", "backpack4", "balloon-fill", "bag-x-fill"],
+            "reactions": {"heart-fill":4, "backpack4":1, "balloon-fill":45, "bag-x-fill":0},
         },
         {
             "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",
             "description": "An arctic fox :3",
             "title": "fox",
-            "reactions": [],
+            "reactions": {"heart-fill":1024, "bag-x-fill":50},
         },
         {
             "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",

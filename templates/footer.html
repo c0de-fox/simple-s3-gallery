@@ -10,10 +10,10 @@
       <p class="float-end mb-1">
         <a href="#">Back to top</a>
       </p>
-      <p class="mb-1">{{ main_line | default('') }}</p>
+      <p class="mb-1">{{ footer.main_line | default('') }}</p>
 
-      {% if extra_lines %}
-        {% for line in extra_lines %}
+      {% if footer.extra_lines %}
+        {% for line in footer.extra_lines %}
           {% if line %}
       <p class="mb-0">{{ line }}</p>
           {% endif %}

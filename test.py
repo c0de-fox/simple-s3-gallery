@@ -76,6 +76,7 @@ template_vars = {
     "gallery_items": [
         {
             "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",
+            "headline": "Alopex-Vulpes",
             "description": "An arctic fox :3",
             "title": "fox",
             "reactions": {

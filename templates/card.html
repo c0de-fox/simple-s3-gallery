@@ -1,6 +1,6 @@
 <div class="col">
   <div class="card shadow-sm">
-    {% if this.title %}
+    {% if this.title and this.title|length >= 1 %}
     <div class="card-header position-relative">
       <span class="flex">{{ this.title }}</span>
       <a
@@ -23,7 +23,7 @@
 
     {% if this.description and this.description|length >= 1 %}
     <div class="card-body">
-      {% if this.headline %}
+      {% if this.headline and this.headline|length >= 1 %}
       <h5 class="card-title">{{ this.headline }}</h5>
       {% endif %}
       <p class="card-text">{{ this.description }}</p>

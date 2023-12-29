@@ -26,7 +26,7 @@ template_vars = {
                 "place_in_head": True,
             },
             "masonry": {
-                "src": "https://cdn.jsdelivr.ner/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+                "src": "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
             },
         },
         "css": {
@@ -55,7 +55,7 @@ template_vars = {
         "extra_lines": ["This is another line", "This is yet another line"],
     },
     "call_to_action": {
-        "active": True,
+        "active": False,
         "header": "This is a call to action",
         "lead_text": "Some interesting text for the user",
         "buttons": [

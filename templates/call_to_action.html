@@ -1,0 +1,45 @@
+<!--
+  #~ Var | Required | Default ~#
+  active | no | false
+  header | yes | none
+  lead_text | yes | none
+  action_buttons (list, optional)
+    n. (list index)
+      - href | no | #
+      - theme | no | primary
+      - icon | no | none
+      - text | yes | none
+    ... (etc)
+-->
+{% if active | default(false) %}
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">{{ header }}</h1>
+      <p class="lead text-body-secondary">{{ lead_text }}</p>
+
+      {% if action_buttons %}
+      <p>
+        {% for button in action_buttons %}
+        <a
+          href="{{ button.href | default('#') }}"
+          class="btn btn-{{ button.theme | default('primary') }} my-2 d-inline-flex"
+        >
+          {{ button.text }}
+          {% if button.icon %}
+          <svg
+            class="bi"
+            width="{{ button.icon.width }}"
+            height="{{ button.icon.height }}"
+          >
+            <use xlink:href="#{{ button.icon.name }}"/>
+          </svg>
+          {% endif %}
+        </a>
+        {% endfor %}
+      </p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}

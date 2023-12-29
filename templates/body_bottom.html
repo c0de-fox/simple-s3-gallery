@@ -1,0 +1,9 @@
+{% if static.scripts.bootstrap %}
+  <script
+    src="{{ static.scripts.bootstrap.src | default('') }}"
+    integrity="{{ static.scripts.bootstrap.integrity | default('') }}"
+    crossorigin="{{ static.scripts.bootstrap.crossorigin | default('anonymous' if static.scripts.bootstrap.integrity else '') }}"
+  ></script>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!--
+  #~ Var | Required | Default ~#
+  language | no | en
+  css_theme_name | no | auto
+  canonical_url | yes | none
+  page_title | yes | none
+  static (list)
+  - scripts (list)
+    - bootstrap (used in footer.html)
+      - src | yes | none
+      - integrity | no | empty
+      - crossorigin | no | empty if no integrity, anonymous otherwise
+    - theme
+      - src | yes | none
+      - integrity | no | empty
+      - crossorigin | no | empty if no integrity, anonymous otherwise
+  - css (list)
+    - bootstrap
+      - src | yes | none
+      - integrity | no | empty
+      - crossorigin | no | empty if no integrity, anonymous otherwise
+    - theme
+      - src | yes | none
+      - integrity | no | empty
+      - crossorigin | no | empty if no integrity, anonymous otherwise
+    - icons
+      - src | yes | none
+      - integrity | no | empty
+      - crossorigin | no | empty if no integrity, anonymous otherwise
+  meta_list
+    n. (list index)
+      - name | yes | none
+      - content | yes | none
+    ... (etc)
+  favicon_list (list of dicts)
+    n. (list index)
+      - rel | no | icon
+      - src | yes | none
+      - sizes | no | none
+      - type | no | none
+      - color | no | none
+    ... (etc)
+-->
+
+<!doctype html>
+<html
+  lang="{{ language | default('en') }}"
+  data-bs-theme="{{ css_theme_name | default('auto') }}"
+>
+<head>
+  {% if static.scripts.theme %}
+    <script
+      src="{{ static.scripts.theme.src | default('') }}"
+      integrity="{{ static.scripts.theme.integrity | default('') }}"
+      crossorigin="{{ static.scripts.theme.crossorigin | default('anonymous' if static.scripts.theme.integrity else '') }}"
+    ></script>
+  {% endif %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="canonical" href="{{ canonical_url }}" />
+    <title>{{ page_title }}</title>
+
+    {% if meta_list %}
+      <!-- meta-tags -->
+      {% for meta in meta_list %}
+    <meta name="{{ meta.name }}" content="{{ meta.content }}" />
+      {% endfor %}
+    {% endif %}
+
+    <!--
+      #~ These are to be provided by the meta_list above, at minimum ~#
+    <meta charset="{{ meta.charset | default('utf-8') }}" />
+    <meta name="description" content="{{ page_description | default('') }}" />
+    <meta name="generator" content="{{ content_generator | default('') }}" />
+    <meta name="author" content="{{ page_author | default('') }}" />
+    <meta name="theme-color" content="#712cf9" />
+    -->
+
+    {% if favicon_list %}
+    <!-- Favicons -->
+      {% for icon in favicon_list %}
+    <link
+      rel="{{ icon.rel | default('icon') }}"
+      href="{{ icon.src }}"
+      sizes="{{ icon.sizes | default('') }}"
+      type="{{ icon.type | default('') }}"
+      color="{{ icon.color | default('') }}"
+    />
+      {% endfor %}
+    {% endif %}
+
+    <!--
+        #~ These are to be provided by the favicon_list above ~#
+    <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
+    -->
+
+    {% if static.css.bootstrap %}
+    <link
+      rel="stylesheet"
+      href="{{ static.css.bootstrap.src }}"
+      integrity="{{ static.css.bootstrap.integrity | default('') }}"
+      crossorigin="{{ static.css.bootstrap.crossorigin | default('anonymous' if static.css.bootstrap.integrity else '') }}"
+    />
+    {% endif %}
+
+    {% if static.css.theme %}
+    <link
+      rel="stylesheet"
+      href="{{ static.css.theme.src }}"
+      integrity="{{ static.css.theme.integrity | default('') }}"
+      crossorigin="{{ static.css.theme.crossorigin | default('anonymous' if static.css.theme.integrity else '') }}"
+    />
+    {% endif %}
+
+    {% if static.css.icons %}
+    <link
+      rel="stylesheet"
+      href="{{ static.css.icons.src }}"
+      integrity="{{ static.css.icons.integrity | default('') }}"
+      crossorigin="{{ static.css.icons.crossorigin | default('anonymous' if static.css.icons.integrity else '') }}"
+    />
+    {% endif %}
+
+</head>

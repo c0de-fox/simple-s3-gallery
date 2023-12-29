@@ -1,8 +1,40 @@
-<div class="col-md-3">
-  <a href="{{FULLLINK}}" target="{{FULLLINK}}">
-      <div class="card mb-3 bg-dark text-white">
-          <div class="card-header">{{TITLE}}</div>
-          <img class="card-img" width="250" src="{{THUMBNAIL}}" />
-      </div>
-  </a>
+<div class="col">
+  <div class="card shadow-sm">
+    <div class="card-header text-end">
+      <a
+        href="#"
+        class="btn btn-light"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        data-bs-title="Add a reaction"
+      >
+        <i class="bi bi-heart-fill" style="font-size: 1rem; color: pink;"></i>
+      </a>
+    </div>
+
+    <img
+      class="card-image-top"
+      width="{{ width | default('100%') }}"
+      height="{{ height | default('225') }}"
+      src="{{ src }}"
+      alt="{{ alt_text if alt_text else title }}"
+    />
+
+    <div class="card-body">
+      <h5 class="card-title text-center">{{ title }}</h5>
+      <p class="card-text">{{ description | default('') }}</p>
+    </div>
+
+    <div class="card-footer text-body-secondary text-end">
+      {% if reactions %}
+        {% for reaction in reactions %}
+        {# TODO: limit total number of reactions shown #}
+      <span class="badge rounded-pill">
+        <svg class="bi" width="1rem" height="1rem"><use xlink:href="#{{ reaction }}" /></svg>
+      </span>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+  </div>
 </div>

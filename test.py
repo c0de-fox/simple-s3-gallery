@@ -48,20 +48,22 @@ template_vars = {
         "main_line": "Copyright 2024 Code Fox",
         "extra_lines": ["This is another line", "This is yet another line"],
     },
-    "active": False,
-    "header": "This is a call to action",
-    "lead_text": "Some interesting text for the user",
-    "action_buttons": [
-        {"href": "1"},
-        {"href": "2", "theme": "danger"},
-        {"href": "3", "theme": "warning", "icon": "exclamation-diamond-fill"},
-        {
-            "href": "3",
-            "theme": "warning",
-            "icon": "exclamation-diamond-fill",
-            "text": "some text",
-        },
-    ],
+    "call_to_action": {
+        "active": True,
+        "header": "This is a call to action",
+        "lead_text": "Some interesting text for the user",
+        "buttons": [
+            {"href": "1"},
+            {"href": "2", "theme": "danger"},
+            {"href": "3", "theme": "warning", "icon": "exclamation-diamond-fill"},
+            {
+                "href": "3",
+                "theme": "warning",
+                "icon": "exclamation-diamond-fill",
+                "text": "some text",
+            },
+        ],
+    },
     "gallery_items": [
         {
             "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",

@@ -11,16 +11,16 @@
       - text | yes | none
     ... (etc)
 #}-->
-{% if active | default(false) %}
+{% if call_to_action.active | default(false) %}
 <section class="py-5 text-center container">
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light">{{ header }}</h1>
-      <p class="lead text-body-secondary">{{ lead_text }}</p>
+      <h1 class="fw-light">{{ call_to_action.header }}</h1>
+      <p class="lead text-body-secondary">{{ call_to_action.lead_text }}</p>
 
-      {% if action_buttons %}
+      {% if call_to_action.buttons %}
       <p>
-        {% for button in action_buttons %}
+        {% for button in call_to_action.buttons %}
         <a
           href="{{ button.href | default('#') }}"
           class="btn btn-{{ button.theme | default('primary') }} my-2 d-inline-flex"

@@ -4,8 +4,8 @@
   css_theme_name | no | auto
   canonical_url | yes | none
   page_title | yes | none
-  static (list)
-  - scripts (list)
+  static (dict)
+  - scripts (dict)
     - bootstrap (used in footer.html)
       - src | yes | none
       - integrity | no | empty
@@ -14,7 +14,7 @@
       - src | yes | none
       - integrity | no | empty
       - crossorigin | no | empty if no integrity, anonymous otherwise
-  - css (list)
+  - css (dict)
     - bootstrap
       - src | yes | none
       - integrity | no | empty
@@ -57,6 +57,7 @@
   {% endif %}
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="{{ charset | default('utf-8') }}" />
 
     <link rel="canonical" href="{{ canonical_url }}" />
     <title>{{ page_title }}</title>
@@ -67,15 +68,6 @@
     <meta name="{{ meta.name }}" content="{{ meta.content }}" />
       {% endfor %}
     {% endif %}
-
-    <!--
-      #~ These are to be provided by the meta_list above, at minimum ~#
-    <meta charset="{{ meta.charset | default('utf-8') }}" />
-    <meta name="description" content="{{ page_description | default('') }}" />
-    <meta name="generator" content="{{ content_generator | default('') }}" />
-    <meta name="author" content="{{ page_author | default('') }}" />
-    <meta name="theme-color" content="#712cf9" />
-    -->
 
     {% if favicon_list %}
     <!-- Favicons -->

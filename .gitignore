@@ -1,6 +1,6 @@
 pathlist*.txt
 thumbs/*
-GenThumb.log
+*.log
 index*.html
 .vscode
 **/example/**

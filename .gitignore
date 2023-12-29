@@ -3,7 +3,6 @@ thumbs/*
 GenThumb.log
 index*.html
 .vscode
-gallery.html
 **/example/**
 **/*venv/**
 test.html

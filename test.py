@@ -73,7 +73,12 @@ template_vars = {
             "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",
             "description": "An arctic fox :3",
             "title": "fox",
-            "reactions": ["heart", "backpack3", "balloon", "bag-x"],
+            "reactions": [],
+        },
+        {
+            "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",
+            "description": "An arctic fox :3",
+            "title": "fox",
         },
     ],
 }

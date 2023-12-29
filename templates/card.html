@@ -25,16 +25,16 @@
       <p class="card-text">{{ gallery.description | default('') }}</p>
     </div>
 
+    {% if gallery.reactions %}
     <div class="card-footer text-body-secondary text-end">
-      {% if gallery.reactions %}
-        {% for reaction in gallery.reactions %}
-        {# TODO: limit total number of reactions shown #}
+      {% for reaction in gallery.reactions %}
+      {# TODO: limit total number of reactions shown #}
       <span class="badge rounded-pill text-body">
         <i class="bi-{{ reaction }}"></i>
       </span>
-        {% endfor %}
-      {% endif %}
+      {% endfor %}
     </div>
+    {% endif %}
 
   </div>
 </div>

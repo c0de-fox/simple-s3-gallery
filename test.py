@@ -19,7 +19,7 @@ template_vars = {
     "static": {
         "scripts": {
             "bootstrap": {
-                "src": "./templates/static/bootstrap.bundle.min.js",
+                "src": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js",
             },
             "theme": {
                 "src": "./templates/static/color-modes.js",
@@ -30,7 +30,7 @@ template_vars = {
             },
         },
         "css": {
-            "bootstrap": {"src": "./templates/static/bootstrap.min.css"},
+            "bootstrap": {"src": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"},
             "theme": {"src": "./templates/static/gallery.css"},
             "icons": {
                 "src": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"

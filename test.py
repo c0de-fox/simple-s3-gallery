@@ -53,8 +53,8 @@ template_vars = {
         "header": "This is a call to action",
         "lead_text": "Some interesting text for the user",
         "buttons": [
-            {"href": "1"},
-            {"href": "2", "theme": "danger"},
+            {"text": "something"},
+            {"theme": "danger", "text": "something dangerous"},
             {"href": "3", "theme": "warning", "icon": "exclamation-diamond-fill"},
             {
                 "href": "3",

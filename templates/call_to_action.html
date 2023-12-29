@@ -23,7 +23,7 @@
         {% for button in call_to_action.buttons %}
         <a
           href="{{ button.href | default('#') }}"
-          class="btn btn-{{ button.theme | default('primary') }} my-2 d-inline-flex"
+          class="btn btn-{{ button.theme | default('primary') }} my-2"
         >
           {% if button.icon %}
           <i class="bi-{{ button.icon }}"></i>

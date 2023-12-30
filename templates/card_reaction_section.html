@@ -1,0 +1,35 @@
+{% if this.reactions and gallery.max_reactions_per_card|int >= 1 %}
+<div class="card-footer text-body-secondary text-end">
+
+  {% set reaction_iterations = namespace(value=0) %}
+  {% for reaction, reaction_count in this.reactions|dictsort(by="value") %}
+
+    {# Don't render reaction if we've reached the max number, or its counter is 0 (or lower) #}
+    {% if reaction_iterations.value|int != gallery.max_reactions_per_card|int and reaction_count|int >= 1 %}
+
+  <button class="btn btn-link btn-sm disabled text-body position-relative">
+      {# TODO: Enable the button, and make clicking it toggle adding/removing that reaction to the counter, also color reaction button #}
+    <i class="bi-{{ reaction }}"></i>
+
+      {# Only show counter if more than 2 people gave the same reaction #}
+      {% if reaction_count|int >= 2 %}
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-body-inverted text-body-inverted">
+
+        {# Don't render reaction counts larger than 1000 #}
+        {{ reaction_count if reaction_count <= 999 else '1K+' }}
+
+      <span class="visually-hidden">
+        {{ reaction_count }} people reacted with {{ reaction }}
+      </span>
+    </span>
+      {% endif %}
+  </button>
+
+      {% set reaction_iterations.value = reaction_iterations.value + 1 %}
+    {% endif %}
+  {% endfor %}
+
+  {% set reaction_iterations = none %}
+
+</div>
+{% endif %}

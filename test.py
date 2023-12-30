@@ -72,13 +72,13 @@ template_vars = {
     },
     "gallery": {
         "max_reactions_per_card": 9,
+        "reactions_enabled": True,
     },
     "gallery_items": [
         {
             "src": "https://files.c0defox.es/Pictures/arctic-fox.jpg",
             "headline": "Alopex-Vulpes",
             "description": "An arctic fox :3",
-            "title": "fox",
             "reactions": {
                 "0-circle": 1,
                 "1-circle": 2,

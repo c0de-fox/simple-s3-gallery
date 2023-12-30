@@ -3,8 +3,8 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" data-memory='{"PercentPossition": true}'>
 
       {% for this in gallery_items %}
-        {% include 'card.html' %}
-        {% include 'card_loading.html' %}
+        <div class="col-md">{% include 'card.html' %}</div>
+        <div class="col-md">{% include 'card_loading.html' %}</div>
       {% endfor %}
 
     </div>
